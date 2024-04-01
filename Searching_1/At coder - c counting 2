@@ -1,0 +1,31 @@
+//submision https://atcoder.jp/contests/abc231/submissions/me
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n, q;
+    cin >> n >> q;
+    vector<int> arr(n + 1);
+    for (int i = 1; i <= n; i++) {
+        cin >> arr[i];
+    }
+    sort(arr.begin(), arr.end());
+    vector<int> query(q + 1);
+    for (int i = 0; i < q; i++) {
+        cin >> query[i];
+    }
+    for (int i = 0; i < q; i++) {
+        int q_size = query[i];
+        if(q_size > arr[n]){
+            cout << 0 << endl;
+        }
+        else if (q_size < arr[1]) {
+            cout << n << endl;
+        } else {
+            auto lb = lower_bound(arr.begin(), arr.end(), q_size) - arr.begin();
+            cout << n-lb+1<< endl;
+        }
+    }
+    return 0;
+}
