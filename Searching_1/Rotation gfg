@@ -1,0 +1,18 @@
+//User function template for C++
+class Solution{
+public:	
+	int findKRotation(int arr[], int n) {
+	    // code here
+	    int s=0,e=n-1;
+	    while(s<e){
+	        int mid = s + (e-s)/2;
+	        if(arr[e]>arr[mid]){
+	            e=mid;
+	        }else{
+	            s=mid+1;
+	        }
+	    }
+	    return s;
+	}
+
+};
