@@ -1,0 +1,36 @@
+//https://www.geeksforgeeks.org/problems/aggressive-cows/1
+class Solution {
+    private:
+    bool possible(int dist,vector<int> &stalls,int k){
+        int c= 1;
+        int pos= stalls[0];
+        for(int i=1;i<stalls.size();i++){
+            if(stalls[i]-pos >= dist){
+                c++;
+                pos = stalls[i];
+            }
+        }
+        return c>=k;
+    }
+public:
+
+    int solve(int n, int k, vector<int> &stalls) {
+    
+        // Write your code here
+        sort(stalls.begin(),stalls.end());
+        
+        int s=1;
+        int e= stalls[n-1]-stalls[0];
+        int ans=0;
+        while(s<=e){
+            int mid= s+ (e-s)/2;
+            if(possible(mid,stalls,k)){
+                ans = mid;
+                s = mid + 1;
+            }else{
+                e= mid-1;
+            }
+        }
+        return ans;
+    }
+};
